@@ -1,0 +1,6 @@
+C语言程序设计简介
+int main()
+{
+    body();
+    return 0;
+}

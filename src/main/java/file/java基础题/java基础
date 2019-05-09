@@ -27,3 +27,72 @@
 　　不可以。因为非static方法是要与对象关联在一起的，必须创建一个对象后，才可以在该对象上进行方法调用，而static方法调用时不需要创建对象，可以直接调用。也就是说，当一个static方法被调用时，可能还没有创建任何实例对象，如果从一个static方法中发出对非static方法的调用，
 那个非static方法是关联到哪个对象上的呢？这个逻辑无法成立，所以，一个static方法内部不可以发出对非static方法的调用。
 
+ArrayList、LinkedList、Vector的区别
+List的三个子类的特点
+
+ArrayList:
+底层数据结构是数组，查询快，增删慢。
+线程不安全，效率高。
+
+Vector:
+底层数据结构是数组，查询快，增删慢。
+线程安全，效率低。
+Vector相对ArrayList查询慢(线程安全的)。
+Vector相对LinkedList增删慢(数组结构)。
+
+LinkedList
+底层数据结构是链表，查询慢，增删快。
+线程不安全，效率高。
+
+Vector和ArrayList的区别
+Vector是线程安全的,效率低。
+ArrayList是线程不安全的,效率高。
+共同点:底层数据结构都是数组实现的,查询快,增删慢。
+
+ArrayList和LinkedList的区别
+ArrayList底层是数组结果,查询和修改快。
+LinkedList底层是链表结构的,增和删比较快,查询和修改比较慢。
+
+共同点:都是线程不安全的
+
+List有三个子类使用
+查询多用ArrayList。
+增删多用LinkedList。
+如果都多ArrayList。
+
+JAVA中HashMap和Hashtable区别
+1.Hashtable的方法是同步的，HashMap未经同步，所以在多线程场合要手动同步HashMap这个区别就像Vector和ArrayList一样。
+2.Hashtable不允许 null 值(key 和 value 都不可以)，HashMap允许 null 值(key和value都可以)。
+3.两者的遍历方式大同小异，Hashtable仅仅比HashMap多一个elements方法。
+4.1哈希值的使用不同，Hashtable直接使用对象的hashCode，而HashMap重新计算hash值，而且用与代替求模。
+4.2Hashtable中hash数组默认大小是11，增加的方式是 old*2+1。HashMap中hash数组的默认大小是16，而且一定是2的指数。
+
+为什么HashMap是线程不安全的
+HashMap 在并发执行 put 操作时会引起死循环，导致 CPU 利用率接近100%。因为多线程会导致 HashMap 的 Node 链表形成环形数据结构，
+一旦形成环形数据结构，Node 的 next 节点永远不为空，就会在获取 Node 时产生死循环。(1.8)
+
+13、Overload和Override的区别。Overloaded的方法是否可以改变返回值的类型?
+　　Overload是重载的意思，Override是覆盖的意思，也就是重写。
+
+　　重载Overload表示同一个类中可以有多个名称相同的方法，但这些方法的参数列表各不相同（即参数个数或类型不同）。
+
+　　重写Override表示子类中的方法可以与父类中的某个方法的名称和参数完全相同，通过子类创建的实例对象调用这个方法时，将调用子类中的定义方法，这相当于把父类中定义的那个完全相同的方法给覆盖了，这也是面向对象编程的多态性的一种表现。
+子类覆盖父类的方法时，只能比父类抛出更少的异常，或者是抛出父类抛出的异常的子异常，因为子类可以解决父类的一些问题，不能比父类有更多的问题。子类方法的访问权限只能比父类的更大，不能更小。如果父类的方法是private类型，那么，子类则不存在覆盖的限制，相当于子类中增加了一个全新的方法。
+
+Java一维数组有两种初始化方法
+1、静态初始化
+int array[] = new int[]{1,2,3,4,5}
+或者
+int array[] = {1,2,3,4,5}
+需要注意的是，写成如下形式也是错误的
+int array[] = new int[5]{1,2,3,4,5}
+2、动态初始化
+int array[] = new int[5];
+array[0] = 1;
+array[1] = 2;
+array[2] = 3;
+array[3] = 4;
+array[4] = 5;
+静态与动态初始化的区别就在于，前者是声明的时候就初始化，后者是先声明，再动态初始化。
+
+static 方法中没有this 这么一说
